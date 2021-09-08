@@ -1,4 +1,10 @@
 from list.MyList import List
+"""
+TODO code constructor with list
+TODO func of inserting
+TODO func of deleting
+TODO solve optional task 
+"""
 
 a = List(1)
 b = List(2)
@@ -9,5 +15,6 @@ b.next_node = c
 
 
 if __name__ == "__main__":
-    b.print_list()
+    a.insert(2, 10)
+    a.print_list()
 
