@@ -1,23 +1,16 @@
-from list.MyList import List
 """
 TODO code constructor with list
-TODO func of deleting. fix deleting first element 
-TODO solve optional task 
+TODO func of deleting. fix deleting first element
+TODO solve optional task
 """
 
-a = List(1)
-b = List(2)
-c = List(3)
 
-x = List(10)
-
-a.next_node = b
-b.next_node = c
-
+from list.List import List
 
 if __name__ == "__main__":
-    a.append(100)
-    a.print_list()
-    a.pop(0)
-    a.print_list()
-    # print(c.data)
+    a = List([1, 2, 3])
+    # a.print_list()
+    # print(type(a.list))
+    print(type(a))
+    a.insert(2, 100)
+    print(a)
