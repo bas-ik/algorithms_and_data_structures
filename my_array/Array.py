@@ -1,5 +1,3 @@
-
-
 class MyArray:
 
     def __init__(self, data):
@@ -13,13 +11,13 @@ class MyArray:
     def get(self, index):
         elements_count = len(self.array)
         if (index < 0) and (index >= elements_count):
-            raise TypeError("index doesn\'t exist")
+            raise ValueError("index doesn\'t exist")
         return self.array[index]
 
     def set(self, index, data):
         elements_count = len(self.array)
         if (index < 0) and (index >= elements_count):
-            raise TypeError("index doesn\'t exist")
+            raise ValueError("index doesn\'t exist")
         self.array[index] = data
 
     def __len__(self):
@@ -49,3 +47,11 @@ class MyArray:
         if elements_count + 1 == index:
             new_data[-1] = data
         self.array = new_data
+
+    def pop(self, index):
+        elements_count = len(self.array)
+        if elements_count == 0:
+            raise ValueError("array is empty")
+        if (index < 0) and (index >= elements_count):
+            raise ValueError("index doesn\'t exist")
+        del self.array[index]
