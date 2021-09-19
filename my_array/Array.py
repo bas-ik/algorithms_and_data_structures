@@ -10,6 +10,18 @@ class MyArray:
         else:
             raise TypeError("expected list (tuple) or int (float) variables")
 
+    def get(self, index):
+        elements_count = len(self.array)
+        if (index < 0) and (index >= elements_count):
+            raise TypeError("index doesn\'t exist")
+        return self.array[index]
+
+    def set(self, index, data):
+        elements_count = len(self.array)
+        if (index < 0) and (index >= elements_count):
+            raise TypeError("index doesn\'t exist")
+        self.array[index] = data
+
     def __len__(self):
         elements_count = 0
         for _ in self.array:
@@ -25,11 +37,15 @@ class MyArray:
     def insert(self, index, data):
         elements_count, flag = len(self), 0
         new_data = [None] * (elements_count + 1)
-        for i in range(elements_count):
+        for i in range(elements_count + 1):
             if i != index:
                 if flag == 0:
                     new_data[i] = self.array[i]
                 if flag == 1:
-                    new_data[i + 1] = self.array[i]
+                    new_data[i] = self.array[i-1]
             else:
                 new_data[i] = data
+                flag = 1
+        if elements_count + 1 == index:
+            new_data[-1] = data
+        self.array = new_data
