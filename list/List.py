@@ -1,4 +1,4 @@
-from list.ListElement import _ListElement
+from list.ListElement import ListElement
 
 
 class List:
@@ -8,25 +8,25 @@ class List:
         :param data: float (int) value
         :return: the "head" of List
         """
-        self._head = _ListElement(data)
+        self._head = ListElement(data)
 
     def __initialize_array(self, data):
         """
-        private method to initialize List by array
+        private method to initialize List by my_array
         :param data: list of int (float) variables
         :return: the "head" of list
         """
-        self._head = _ListElement(data[0])
+        self._head = ListElement(data[0])
         tmp = self._head
         for i in data[1:]:
-            tmp.next_node = _ListElement(i)
+            tmp.next_node = ListElement(i)
             tmp = tmp.next_node
 
     def __init__(self, data):
         """
         constructor: initialize List
 
-        :param data: array (list) or float (int) variable
+        :param data: my_array (list) or float (int) variable
         """
         if type(data) is list:
             for i in data:
@@ -36,7 +36,7 @@ class List:
         elif (type(data) is float) or (type(data) is int):
             self.__initialize_element(data)
         else:
-            raise TypeError('expected array (list) or float (int) variable')
+            raise TypeError('expected my_array (list) or float (int) variable')
 
     def __len__(self):
         """
@@ -89,7 +89,7 @@ class List:
         reference = self._head
         while reference.next_node is not None:
             reference = reference.next_node
-        reference.next_node = _ListElement(data)
+        reference.next_node = ListElement(data)
 
     def insert(self, index, data):
         """
@@ -109,7 +109,7 @@ class List:
         while reference.next_node is not None:
             reference = reference.next_node
             reference.data, tmp = tmp, reference.data
-        last_elem = _ListElement(tmp)
+        last_elem = ListElement(tmp)
         reference.next_node = last_elem
 
     def pop(self, index):
@@ -118,6 +118,8 @@ class List:
 
         :param index: index of del element
         """
+        if self._head is None:
+            raise ValueError("List is empty")
         if index == 0:
             self._head = self._head.next_node
         else:

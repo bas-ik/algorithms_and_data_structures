@@ -1,4 +1,4 @@
-class _ListElement:
+class ListElement:
     def __init__(self, data: float):
         """
         initializing the list element
