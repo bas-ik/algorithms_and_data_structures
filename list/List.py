@@ -21,6 +21,8 @@ class List:
         for i in data[1:]:
             tmp.next_node = ListElement(i)
             tmp = tmp.next_node
+    def __initialize_str(self, data):
+        self._head = ListElement(data)
 
     def __init__(self, data):
         """
@@ -29,14 +31,11 @@ class List:
         :param data: my_array (list) or float (int) variable
         """
         if type(data) is list:
-            for i in data:
-                if (type(i) is not int) and (type(i) is not float):
-                    raise TypeError("expected list of float (int) values")
             self.__initialize_array(data)
         elif (type(data) is float) or (type(data) is int):
             self.__initialize_element(data)
-        else:
-            raise TypeError('expected my_array (list) or float (int) variable')
+        elif type(data) is str:
+            self.__initialize_str(data)
 
     def __len__(self):
         """
@@ -112,7 +111,7 @@ class List:
         last_elem = ListElement(tmp)
         reference.next_node = last_elem
 
-    def pop(self, index):
+    def remove(self, index):
         """
         del element from List by index
 
@@ -132,3 +131,10 @@ class List:
             del_elem = reference.next_node
             reference.next_node = del_elem.next_node
             del del_elem
+
+    def pop (self):
+        """
+        del last element
+        :return:
+        """
+        self.remove(len(self) - 1)
