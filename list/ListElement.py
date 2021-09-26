@@ -1,5 +1,5 @@
 class ListElement:
-    def __init__(self, data: float):
+    def __init__(self, data):
         """
         initializing the list element
 
