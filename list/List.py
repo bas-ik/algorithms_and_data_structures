@@ -16,11 +16,15 @@ class List:
         :param data: list of int (float) variables
         :return: the "head" of list
         """
-        self._head = ListElement(data[0])
-        tmp = self._head
-        for i in data[1:]:
-            tmp.next_node = ListElement(i)
-            tmp = tmp.next_node
+        if len(data) == 0:
+            self._head = ListElement(None)
+        else:
+            self._head = ListElement(data[0])
+            tmp = self._head
+            for i in data[1:]:
+                tmp.next_node = ListElement(i)
+                tmp = tmp.next_node
+
     def __initialize_str(self, data):
         self._head = ListElement(data)
 
@@ -68,7 +72,7 @@ class List:
         :return value by index
 
         :param index: index of return's element
-        :return: data
+        :return: ListElement object
         """
         number, reference = 0, self._head
         while (reference is not None) and (number != index):
@@ -76,7 +80,7 @@ class List:
             number += 1
         if number != index:
             raise ValueError("index doesn\'t exist!")
-        return reference.data
+        return reference
 
     def append(self, data):
         """
@@ -132,7 +136,7 @@ class List:
             reference.next_node = del_elem.next_node
             del del_elem
 
-    def pop (self):
+    def pop(self):
         """
         del last element
         :return:
