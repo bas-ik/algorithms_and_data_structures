@@ -7,8 +7,8 @@ class Stack:
         self._stack = List(data[::-1])
         self.last_elem = self._stack.get(0)
 
-    def __str__(self):    # 3->2->5
-        string = str(self._stack)[:-6]     # slice is required not to print "->None"
+    def __str__(self):  # 3->2->5
+        string = str(self._stack)[:-6]  # slice is required not to print "->None"
         values = string.split('->')
         string = ""
         for i in [str(i) + "->" for i in values[::-1]]:
@@ -25,4 +25,3 @@ class Stack:
 
     def get(self, index):
         return self._stack.get(index)
-

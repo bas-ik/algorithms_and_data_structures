@@ -40,7 +40,7 @@ class MyArray:
                 if flag == 0:
                     new_data[i] = self.array[i]
                 if flag == 1:
-                    new_data[i] = self.array[i-1]
+                    new_data[i] = self.array[i - 1]
             else:
                 new_data[i] = data
                 flag = 1
