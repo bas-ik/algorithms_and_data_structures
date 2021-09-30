@@ -64,8 +64,7 @@ class List:
         while reference is not None:
             string += str(reference.data) + '->'
             reference = reference.next_node
-        string += "None"
-        return string
+        return string[:-2]
 
     def get(self, index):
         """
@@ -102,18 +101,26 @@ class List:
         :param data: data to insert into the list
         :return: the head of the List
         """
-        number, reference = 0, self._head
-        while (reference is not None) and (number != index):
-            reference = reference.next_node
-            number += 1
-        if reference is None:
-            raise ValueError('index doesn\'t exist')
-        reference.data, tmp = data, reference.data
-        while reference.next_node is not None:
-            reference = reference.next_node
-            reference.data, tmp = tmp, reference.data
-        last_elem = ListElement(tmp)
-        reference.next_node = last_elem
+        if index == 0:
+            tmp = self._head
+            self._head = ListElement(data)
+            self._head.next_node = tmp
+        else:
+            number, reference = 0, self._head
+            while (reference is not None) and (number != index - 1):
+                reference = reference.next_node
+                number += 1
+            if number != index - 1:
+                raise ValueError('index doesn\'t exist')
+            tmp = reference.next_node
+            reference.next_node = ListElement(data)
+            reference.next_node.next_node = tmp
+            # reference.data, tmp = data, reference.data
+            # while reference.next_node is not None:
+            #     reference = reference.next_node
+            #     reference.data, tmp = tmp, reference.data
+            # last_elem = ListElement(tmp)
+            # reference.next_node = last_elem
 
     def remove(self, index):
         """
@@ -135,6 +142,18 @@ class List:
             del_elem = reference.next_node
             reference.next_node = del_elem.next_node
             del del_elem
+
+    def set(self, index, data):
+        if index == 0:
+            self._head.data = data
+        else:
+            number, reference = 0, self._head
+            while (reference is not None) and (number != index):
+                reference = reference.next_node
+                number += 1
+            if number != index:
+                raise ValueError('index doesn\'t exist')
+            reference.data = data
 
     def pop(self):
         """
