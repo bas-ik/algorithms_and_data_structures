@@ -28,25 +28,48 @@ class MyArray:
 
     def __str__(self):
         string = ""
-        for i in self.array:
-            string += str(i) + " "
+        count = 0
+        for i in self.array[:-1]:
+            if self.array[i] is not None:
+                break
+            count += 1
+
+        for i in range(len(self.array)):
+            if i == count:
+                break
+            string += str(self.array[i]) + " "
+
         return string
 
     def insert(self, index, data):
         elements_count, flag = len(self), 0
-        new_data = [None] * (elements_count + 1)
-        for i in range(elements_count + 1):
-            if i != index:
-                if flag == 0:
-                    new_data[i] = self.array[i]
+        element_count = len([i for i in self.array if i is not None])
+        if element_count == len(self.array):
+            new_data = [None] * elements_count * 2
+            for i in range(elements_count + 1):
+                if i != index:
+                    if flag == 0:
+                        new_data[i] = self.array[i]
+                    if flag == 1:
+                        new_data[i] = self.array[i - 1]
+                else:
+                    new_data[i] = data
+                    flag = 1
+            if elements_count + 1 == index:
+                new_data[-1] = data
+            self.array = new_data
+        else:
+            flag = 0
+            for i in range(elements_count):
                 if flag == 1:
-                    new_data[i] = self.array[i - 1]
-            else:
-                new_data[i] = data
-                flag = 1
-        if elements_count + 1 == index:
-            new_data[-1] = data
-        self.array = new_data
+                    self.array[i], tmp = tmp, self.array[i]
+                if i == index:
+                    tmp = self.array[i]
+                    self.array[i] = data
+                    flag = 1
+
+
+
 
     def pop(self, index):
         elements_count = len(self.array)

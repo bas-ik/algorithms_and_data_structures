@@ -13,6 +13,11 @@ if __name__ == "__main__":
 
     b = MyArray([1, 2, 3])
     print(b)
+    b.insert(2, 333)
+    b.insert(2, 111)
+    print(b)
+    b.pop(1)
+    print(b)
 
     c = Stack([1, 2, 3])
     print(c)    # последний элемент стека -- самый правый
