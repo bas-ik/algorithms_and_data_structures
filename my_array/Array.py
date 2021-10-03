@@ -68,9 +68,6 @@ class MyArray:
                     self.array[i] = data
                     flag = 1
 
-
-
-
     def pop(self, index):
         elements_count = len(self.array)
         if elements_count == 0:
