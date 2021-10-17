@@ -28,6 +28,9 @@ class List:
     def __initialize_str(self, data):
         self._head = ListElement(data)
 
+    def __initialize_something(self, data):
+        self._head = ListElement(data)
+
     def __init__(self, data):
         """
         constructor: initialize List
@@ -40,6 +43,8 @@ class List:
             self.__initialize_element(data)
         elif type(data) is str:
             self.__initialize_str(data)
+        else:
+            self.__initialize_something(data)
 
     def __len__(self):
         """
