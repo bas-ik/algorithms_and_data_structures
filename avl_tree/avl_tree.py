@@ -163,6 +163,11 @@ class AVLTree(object):
             a = Tree.insert(a, i)
         return AVLTree.in_order(a)
 
+    @staticmethod
+    def search(root, key):
+        tree_elem = AVLTree.in_order(root)
+        return True if key in tree_elem else False
+
 
 if __name__ == "__main__":
     Tree = AVLTree()
@@ -184,3 +189,5 @@ if __name__ == "__main__":
     print("в глубину:", Tree.breadth_first_search(root))
     seq = [5, 4, 3, 10, 2, 1]
     print(AVLTree.sort_sequence(seq))
+    print(AVLTree.search(root, 5))
+
