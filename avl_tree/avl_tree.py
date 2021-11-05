@@ -161,7 +161,7 @@ class AVLTree(object):
         a = None
         for i in seq:
             a = Tree.insert(a, i)
-        return AVLTree.in_order(root)
+        return AVLTree.in_order(a)
 
 
 if __name__ == "__main__":
@@ -178,9 +178,9 @@ if __name__ == "__main__":
     # Preorder Traversal
     print("Preorder traversal of the",
           "constructed AVL tree is")
-    print(AVLTree.in_order(root))
-    print(AVLTree.pre_order(root))
-    print(AVLTree.post_order(root))
-    print(Tree.breadth_first_search(root))
-    seq = [5, 4, 3, 2, 1]
+    print(f"in_order: {AVLTree.in_order(root)}")
+    print("pre_order: ", AVLTree.pre_order(root))
+    print("post-order:", AVLTree.post_order(root))
+    print("в глубину:", Tree.breadth_first_search(root))
+    seq = [5, 4, 3, 10, 2, 1]
     print(AVLTree.sort_sequence(seq))
