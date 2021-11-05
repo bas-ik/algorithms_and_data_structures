@@ -71,7 +71,7 @@ class AVLTree(object):
             return 0
         return self.get_height(root.l) - self.get_height(root.r)
 
-    # ЛКП
+    # КЛП
     @staticmethod
     def pre_order(root):
 
@@ -90,7 +90,6 @@ class AVLTree(object):
             if node.l is not None:
                 nodeStack.append(node.l)
         return res
-
 
     # ЛКП
     @staticmethod
@@ -148,7 +147,7 @@ class AVLTree(object):
             self.print_current_level(root.l, level - 1, res)
             self.print_current_level(root.r, level - 1, res)
 
-    def print_level_order(self, root):
+    def breadth_first_search(self, root):
         res = []
         h = self.get_height(root)
         for i in range(1, h + 1):
@@ -163,6 +162,7 @@ class AVLTree(object):
         for i in seq:
             a = Tree.insert(a, i)
         return AVLTree.in_order(root)
+
 
 if __name__ == "__main__":
     Tree = AVLTree()
@@ -181,7 +181,6 @@ if __name__ == "__main__":
     print(AVLTree.in_order(root))
     print(AVLTree.pre_order(root))
     print(AVLTree.post_order(root))
-    print(Tree.print_level_order(root))
-    seq = [5,4,3,2,1]
+    print(Tree.breadth_first_search(root))
+    seq = [5, 4, 3, 2, 1]
     print(AVLTree.sort_sequence(seq))
-
