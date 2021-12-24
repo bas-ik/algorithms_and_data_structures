@@ -1,12 +1,17 @@
 class MyArray:
 
-    def __init__(self, data):
+    def __init__(self, data=None):
         if (type(data) is list) or (type(data) is tuple):
             self.array = list(data)
-        elif (type(data) is int) or (type(data) is float):
-            self.array = list(data)
+            self.elem_count = len(data)
+
+        elif data is None:
+            self.array = []
+            self.elem_count = 0
+        #elif (type(data) is int) or (type(data) is float) or (type(data) is str):
         else:
-            raise TypeError("expected list (tuple) or int (float) variables")
+            self.array = list(data)
+            self.elem_count = 1
 
     def get(self, index):
         elements_count = len(self.array)
@@ -28,23 +33,20 @@ class MyArray:
 
     def __str__(self):
         string = ""
-        count = 0
-        for i in self.array[:-1]:
-            if self.array[i] is not None:
-                break
-            count += 1
-
-        for i in range(len(self.array)):
-            if i == count:
-                break
-            string += str(self.array[i]) + " "
-
-        return string
+        if self.array is not None:
+            for i in self.array:
+                if i is not None:
+                    string += str(i) + ' '
+            return string
+        else:
+            return None
 
     def insert(self, index, data):
         elements_count, flag = len(self), 0
         element_count = len([i for i in self.array if i is not None])
-        if element_count == len(self.array):
+        if self.elem_count == 0:
+            self.array = [data]
+        elif element_count == len(self.array):
             new_data = [None] * elements_count * 2
             for i in range(elements_count + 1):
                 if i != index:
@@ -68,6 +70,10 @@ class MyArray:
                     self.array[i] = data
                     flag = 1
 
+    def my_append(self, data):
+        self.insert(self.elem_count, data)
+        self.elem_count += 1
+
     def pop(self, index):
         elements_count = len(self.array)
         if elements_count == 0:
@@ -75,3 +81,14 @@ class MyArray:
         if (index < 0) and (index >= elements_count):
             raise ValueError("index doesn\'t exist")
         del self.array[index]
+
+
+if __name__ == '__main__':
+    a = MyArray([1, 2, 3])
+    # print(a)
+    a.my_append(10)
+    print(a)
+    a.my_append(100)
+    print(a)
+    # a.insert(5, "Y")
+    # print(a)
