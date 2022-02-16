@@ -1,2 +1,15 @@
-# Вторая лаба
-### Чтобы начать работу алгоритма сортировки, используйте Sorting.sort(a), где a - массив, который необходимо отсортировать
+# Data stractures:
+* Graph
+* AVL tree
+* Stack
+* Queue
+* List
+* Disjoint-set/Union-find Forest
+* Dinamic array
+
+# Algorithms
+* Shunting-yard algorithm
+* DFS (for graph and tree)
+* BFS (for graph and tree)
+* Timsort
+* Kruskal's algorithm
